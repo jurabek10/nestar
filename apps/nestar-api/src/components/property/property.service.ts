@@ -5,4 +5,8 @@ import { Model } from 'mongoose';
 @Injectable()
 export class PropertyService {
 	constructor(@InjectModel('Property') private readonly propertyModel: Model<null>) {}
+
+	public async createProperty(): Promise<string> {
+		return 'createProperty executed';
+	}
 }
