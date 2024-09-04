@@ -1,9 +1,10 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { IsIn, IsInt, IsNotEmpty, IsOptional, Length, Min } from 'class-validator';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
+import { PropertyLocation, PropertyStatus, PropertyType } from '../../enums/property.enum';
 import { ObjectId } from 'mongoose';
 import { availabeOptions, availablePropertySorts } from '../../config';
 import { Direction } from '../../enums/common.enum';
+import { rmSync } from 'fs';
 
 @InputType()
 export class PropertysInput {
@@ -164,4 +165,33 @@ export class PropertiesInquiry {
 	@IsNotEmpty()
 	@Field(() => PISearch)
 	search: PISearch;
+}
+
+@InputType()
+class APISearch {
+	@IsOptional()
+	@Field(() => PropertyStatus, { nullable: true })
+	propertyStatus?: PropertyStatus;
+}
+
+@InputType()
+export class AgentsPropertiesInquiry {
+	@IsNotEmpty()
+	@Min(1)
+	@Field(() => Int)
+	page: number;
+
+	@IsNotEmpty()
+	@Min(1)
+	@Field(() => Int)
+	limit: number;
+
+	@IsOptional()
+	@Field(() => Direction, { nullable: true })
+	direction: Direction;
+
+	@IsNotEmpty()
+	@Field(() => APISearch)
+	search: APISearch;
+	sort: string;
 }
