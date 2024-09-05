@@ -129,6 +129,7 @@ export class PropertyService {
 			text,
 		} = input.search;
 		if (memberId) match.memberId = shapeIntoMogoObjectId(memberId);
+		if (locationList) match.propertyLocation = { $in: locationList };
 		if (typeList) match.propertyType = { $in: typeList };
 		if (roomsList) match.propertyRooms = { $in: roomsList };
 		if (bedsList) match.propertyBeds = { $in: bedsList };
