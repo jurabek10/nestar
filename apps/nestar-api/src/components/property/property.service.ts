@@ -40,7 +40,7 @@ export class PropertyService {
 	public async getProperty(memberId: ObjectId, propertyId: ObjectId): Promise<Property> {
 		const search: T = {
 			_id: propertyId,
-			PropertyStatus: PropertyStatus.ACTIVE,
+			propertyStatus: PropertyStatus.ACTIVE,
 		};
 
 		const targetProperty: Property = await this.propertyModel.findOne(search).lean().exec();
