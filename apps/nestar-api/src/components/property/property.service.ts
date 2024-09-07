@@ -15,7 +15,7 @@ import { StatisticModifier, T } from '../../libs/types/common';
 import { ViewGroup } from '../../libs/enums/view.enum';
 import { ViewService } from '../view/view.service';
 import { PropertyUpdate } from '../../libs/dto/property/property.update';
-import moment from 'moment';
+import * as moment from 'moment';
 import { lookupMember, shapeIntoMogoObjectId } from '../../libs/config';
 
 @Injectable()
@@ -104,7 +104,12 @@ export class PropertyService {
 				{ $sort: sort },
 				{
 					$facet: {
-						list: [{ $skip: (input.page - 1) * input.limit }, lookupMember, { $unwind: '$memberData' }],
+						list: [
+							{ $skip: (input.page - 1) * input.limit },
+							{ $limit: input.limit },
+							lookupMember,
+							{ $unwind: '$memberData' },
+						],
 						metaCounter: [{ $count: 'total' }],
 					},
 				},
@@ -166,7 +171,12 @@ export class PropertyService {
 				{ $sort: sort },
 				{
 					$facet: {
-						list: [{ $skip: (input.page - 1) * input.limit }, lookupMember, { $unwind: '$memberData' }],
+						list: [
+							{ $skip: (input.page - 1) * input.limit },
+							{ $limit: input.limit },
+							lookupMember,
+							{ $unwind: '$memberData' },
+						],
 						metaCounter: [{ $count: 'total' }],
 					},
 				},

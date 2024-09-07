@@ -187,13 +187,17 @@ export class AgentsPropertiesInquiry {
 	limit: number;
 
 	@IsOptional()
+	@IsIn(availablePropertySorts)
+	@Field(() => String, { nullable: true })
+	sort?: string;
+
+	@IsOptional()
 	@Field(() => Direction, { nullable: true })
 	direction: Direction;
 
 	@IsNotEmpty()
 	@Field(() => APISearch)
 	search: APISearch;
-	sort: string;
 }
 
 @InputType()
