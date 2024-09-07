@@ -233,6 +233,6 @@ export class AllPropertiesInquiry {
 	direction?: Direction;
 
 	@IsNotEmpty()
-	@Field(() => APISearch)
+	@Field(() => ALPSearch)
 	search: ALPSearch;
 }

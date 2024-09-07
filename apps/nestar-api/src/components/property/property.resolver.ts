@@ -78,6 +78,7 @@ export class PropertyResolver {
 	}
 
 	/** ADMIN */
+
 	@Roles(MemberType.ADMIN)
 	@UseGuards(RolesGuard)
 	@Query((returns) => Properties)
