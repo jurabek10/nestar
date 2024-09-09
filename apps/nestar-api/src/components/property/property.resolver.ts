@@ -16,6 +16,9 @@ import { ObjectId } from 'mongoose';
 import { WithoutGuard } from '../auth/guards/without.guard';
 import { shapeIntoMogoObjectId } from '../../libs/config';
 import { PropertyUpdate } from '../../libs/dto/property/property.update';
+import { BoardArticleUpdate } from '../../libs/dto/board-article/board-article.update';
+import { BoardArticle } from '../../libs/dto/board-article/board-article';
+import { BoardArticleStatus } from '../../libs/enums/board-article.enum';
 
 @Resolver()
 export class PropertyResolver {
