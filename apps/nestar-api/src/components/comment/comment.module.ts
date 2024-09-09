@@ -8,13 +8,14 @@ import { ViewModule } from '../view/view.module';
 import { MemberModule } from '../member/member.module';
 import { Property } from '../../libs/dto/property/property';
 import { BoardArticleModule } from '../board-article/board-article.module';
+import { PropertyModule } from '../property/property.module';
 
 @Module({
 	imports: [
 		MongooseModule.forFeature([{ name: 'Comment', schema: CommentSchema }]),
 		AuthModule,
 		MemberModule,
-		Property,
+		PropertyModule,
 		BoardArticleModule,
 	],
 	providers: [CommentResolver, CommentService],
