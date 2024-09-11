@@ -131,7 +131,7 @@ export class MemberService {
 		return result[0];
 	}
 
-	public async likeTargetmember(memberId: ObjectId, likeRefId: ObjectId): Promise<Member> {
+	public async likeTargetMember(memberId: ObjectId, likeRefId: ObjectId): Promise<Member> {
 		const target: Member = await this.memberModel.findOne({ _id: likeRefId, memberStatus: MemberStatus.ACTIVE });
 		if (!target) throw new InternalServerErrorException(Message.NO_DATA_FOUND);
 

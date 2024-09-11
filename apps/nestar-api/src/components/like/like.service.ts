@@ -8,23 +8,23 @@ import { Message } from '../../libs/enums/common.enum';
 
 @Injectable()
 export class LikeService {
-	constructor(@InjectModel('Like') private readonly likeyModel: Model<Like>) {}
+	constructor(@InjectModel('Like') private readonly likeModel: Model<Like>) {}
 
 	public async toggleLike(input: LikeInput): Promise<number> {
 		const search: T = {
-				memberId: input.memberId,
-				likeRefId: input.likeRefId,
-			},
-			exist = await this.likeyModel.findOne(search).exec();
+			memberId: input.memberId,
+			likeRefId: input.likeRefId,
+		};
+		const exist = await this.likeModel.findOne(search).exec();
 
 		let modifier = 1;
 
 		if (exist) {
-			await this.likeyModel.findByIdAndDelete(search).exec();
+			await this.likeModel.findOneAndDelete(search).exec();
 			modifier = -1;
 		} else {
 			try {
-				await this.likeyModel.create(input);
+				await this.likeModel.create(input);
 			} catch (err) {
 				console.log('Error, Service.model', err.message);
 				throw new BadRequestException(Message.CREATED_FAILED);
