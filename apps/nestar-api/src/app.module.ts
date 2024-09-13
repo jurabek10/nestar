@@ -9,6 +9,7 @@ import { ComponentsModule } from './components/components.module';
 import { DatabaseModule } from './database/database.module';
 import { T } from './libs/types/common';
 import { graphql } from 'graphql';
+import { NestService } from './g/nest/nest.service';
 
 @Module({
 	imports: [
@@ -32,6 +33,6 @@ import { graphql } from 'graphql';
 		DatabaseModule,
 	],
 	controllers: [AppController],
-	providers: [AppService, AppResolver],
+	providers: [AppService, AppResolver, NestService],
 })
 export class AppModule {}
