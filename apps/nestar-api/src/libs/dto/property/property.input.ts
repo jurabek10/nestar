@@ -236,3 +236,16 @@ export class AllPropertiesInquiry {
 	@Field(() => ALPSearch)
 	search: ALPSearch;
 }
+
+@InputType()
+export class OrdinaryInquiry {
+	@IsNotEmpty()
+	@Min(1)
+	@Field(() => Int)
+	page: number;
+
+	@IsNotEmpty()
+	@Min(1)
+	@Field(() => Int)
+	limit: number;
+}
