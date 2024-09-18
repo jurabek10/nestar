@@ -11,7 +11,6 @@ import { T } from './libs/types/common';
 import { graphql } from 'graphql';
 import { NestService } from './g/nest/nest.service';
 import { SocketModule } from './socket/socket.module';
-
 @Module({
 	imports: [
 		ConfigModule.forRoot(),
