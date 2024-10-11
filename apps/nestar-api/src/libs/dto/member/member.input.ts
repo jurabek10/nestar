@@ -62,13 +62,13 @@ export class AgenstInquiry {
 	limit: number;
 
 	@IsOptional()
-	@IsIn([availableAgentSorts])
+	@IsIn(availableAgentSorts)
 	@Field(() => String, { nullable: true })
 	sort?: string;
 
 	@IsOptional()
 	@Field(() => Direction, { nullable: true })
-	direction?: string;
+	direction?: Direction;
 
 	@IsNotEmpty()
 	@Field(() => AISearch)
