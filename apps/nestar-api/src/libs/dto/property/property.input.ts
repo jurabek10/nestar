@@ -7,7 +7,7 @@ import { Direction } from '../../enums/common.enum';
 import { rmSync } from 'fs';
 
 @InputType()
-export class PropertysInput {
+export class PropertyInput {
 	@IsNotEmpty()
 	@Field(() => PropertyType)
 	propertyType: PropertyType;
@@ -175,7 +175,7 @@ class APISearch {
 }
 
 @InputType()
-export class AgentsPropertiesInquiry {
+export class AgentPropertiesInquiry {
 	@IsNotEmpty()
 	@Min(1)
 	@Field(() => Int)

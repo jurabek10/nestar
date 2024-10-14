@@ -4,11 +4,11 @@ import { Model, ObjectId } from 'mongoose';
 import { Properties, Property } from '../../libs/dto/property/property';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import {
-	AgentsPropertiesInquiry,
+	AgentPropertiesInquiry,
 	AllPropertiesInquiry,
 	OrdinaryInquiry,
 	PropertiesInquiry,
-	PropertysInput,
+	PropertyInput,
 } from '../../libs/dto/property/property.input';
 import { MemberService } from '../member/member.service';
 import { PropertyStatus } from '../../libs/enums/property.enum';
@@ -31,7 +31,7 @@ export class PropertyService {
 		private likeService: LikeService,
 	) {}
 
-	public async createProperty(input: PropertysInput): Promise<Property> {
+	public async createProperty(input: PropertyInput): Promise<Property> {
 		try {
 			const result = await this.propertyModel.create(input);
 			await this.memberService.memberStatsEditor({ _id: result.memberId, targetKey: 'memberProperties', modifier: 1 });
@@ -172,7 +172,7 @@ export class PropertyService {
 		return this.viewService.getVisitedProperties(memberId, input);
 	}
 
-	public async getAgentProperties(memberId: ObjectId, input: AgentsPropertiesInquiry): Promise<Properties> {
+	public async getAgentProperties(memberId: ObjectId, input: AgentPropertiesInquiry): Promise<Properties> {
 		const { propertyStatus } = input.search;
 		if (propertyStatus === PropertyStatus.DELETE) throw new BadRequestException(Message.NOT_ALLOWED_REQUEST);
 
